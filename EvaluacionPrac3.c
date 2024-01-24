@@ -11,7 +11,6 @@ void ingresoProductos(FILE *ing)
 {
 
     struct producto opcion1;
-
     printf("Ingrese el nombre del producto.\n");
     scanf("%s", &opcion1.nombreProductoProducto);
     fprintf(ing, "%s\t", opcion1.nombreProductoProducto);
@@ -31,36 +30,56 @@ void ingresoProductos(FILE *ing)
     printf("Ingrese el precio del producto.\n");
     scanf("%f", &opcion1.precioProducto);
     fprintf(ing, "%.02f\t", opcion1.precioProducto);
+
+    fprintf(ing, "\n");
 }
 
-int main(void)
+void mostrarProductos(FILE *ing)
 {
-    FILE *ing;
-    ing = fopen("producto.txt", "a+");
 
-    int opcion;
-    printf("Ingrese la opcion que desea realizar.\n");
-    printf("MENU:\n");
-    printf("1) Ingresar un prducto:\n");
-    printf("2) Mostrar los datos:\n");
-    printf("3) Salir:\n");
-    scanf("%d", &opcion);
+    struct producto opcion2;
 
-    switch (opcion)
+    while (fscanf(ing, "%s %s %s %d %f", opcion2.nombreProductoProducto, opcion2.codigo, opcion2.descripcion, &opcion2.cantidad, &opcion2.precioProducto) != EOF)
     {
-    case 1:
-        ingresoProductos(ing);
-        break;
-    case 2:
-
-        break;
-
-    case 3:
-
-        break;
-
-    default:
-        break;
+        printf("Nombre del producto: %s\n", opcion2.nombreProductoProducto);
+        printf("Código del producto: %s\n", opcion2.codigo);
+        printf("Descripción del producto: %s\n", opcion2.descripcion);
+        printf("Cantidad del producto: %d\n", opcion2.cantidad);
+        printf("Precio del producto: %.02f\n", opcion2.precioProducto);
+        printf("\n");
     }
-    return 0;
 }
+    int main(void)
+    {
+        FILE *ing;
+        ing = fopen("producto.txt", "a+");
+        ;
+        int opcion;
+        printf("Ingrese la opcion que desea realizar.\n");
+        printf("MENU:\n");
+        printf("1) Ingresar un prducto:\n");
+        printf("2) Mostrar los datos:\n");
+        printf("3) Salir:\n");
+        scanf("%d", &opcion);
+        while (opcion != 3)
+        {
+            switch (opcion)
+            {
+            case 1:
+                ingresoProductos(ing);
+                break;
+            case 2:
+                mostrarProductos(ing);
+                break;
+
+            case 3:
+
+                break;
+
+            default:
+                break;
+            }
+        }
+    fclose(ing);
+        return 0;
+    }
