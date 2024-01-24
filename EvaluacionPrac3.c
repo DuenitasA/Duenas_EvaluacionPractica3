@@ -7,8 +7,23 @@ struct producto
     int cantidad;
     float precioProducto;
 };
+void ingresoProductos(FILE *ing){
+
+    struct producto opcion1;
+    
+    printf("Ingrese el nombre del producto.\n");
+    scanf("%s", opcion1.nombreProductoProducto);
+    fprintf(ing, "%s", opcion1.nombreProductoProducto);
+
+
+
+}
+
 int main(void)
 {
+    FILE *ing;
+
+    ing = fopen("producto.txt", "a+");
 
     int opcion;
     printf("Ingrese la opcion que desea realizar.\n");
@@ -21,7 +36,7 @@ int main(void)
     switch (opcion)
     {
     case 1:
-
+    
         break;
     case 2:
 
@@ -31,7 +46,7 @@ int main(void)
 
 
     break;
-    
+
     default:
         break;
     }
